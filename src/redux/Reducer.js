@@ -1,11 +1,17 @@
 import { combineReducers } from "redux"
 
-// const bukuState = {
-//     id:0,
-//     judulBuku:"",
-//     jumlahHalaman:0,
-//     namaPenulis:""
-// }
+const LapState = {
+    id:0,
+    nama: "",
+    kejadian: "",
+    alamat: "",
+    keterangan: "",
+    status:"",
+    gambar: "",
+    latitude: 0.0,
+    longitude: 0.0,
+    time: "",
+    }
 
 const RegisterState = {
     id:0,
@@ -18,15 +24,15 @@ const RegisterState = {
     isLogin:false
 }
 
-// function BukuReducer (state=bukuState,action){
-//     if(action.type === "SET_BUKU"){
-//         return {
-//             ...state,
-//             [action.inputType]:action.inputValue
-//         }
-//     }
-//     return state;
-// }
+function LapReducer (state=LapState,action){
+    if(action.type === "SET_LAP"){
+        return {
+            ...state,
+            [action.inputType]:action.inputValue
+        }
+    }
+    return state;
+}
 
 function RegisterReducer(state=RegisterState,action){
     if(action.type==="SET_REG"){
@@ -40,7 +46,7 @@ function RegisterReducer(state=RegisterState,action){
 
 const reducer = combineReducers({
     RegisterReducer,
-
+    LapReducer,
 })
 
 export default reducer

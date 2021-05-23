@@ -22,7 +22,7 @@ class Login extends Component {
             this.props.RegAction("password",response.data.password)
             this.props.RegAction("isLogin",true)
 
-            this.props.navigation.navigate("home")
+            this.props.navigation.navigate("mainmenu")
         })
         .catch((err)=>{
             console.log(err)
@@ -37,9 +37,12 @@ class Login extends Component {
                     style={styles.input}
                     placeholder="useless placeholder"
                     onChangeText={(value)=>{this.props.RegAction("name",value)}}
-                />                
-                <TouchableOpacity style={styles.button} onPress={()=>{this.handleLogin()}}><Text style={styles.text}>Submit</Text></TouchableOpacity>
-            
+                />             
+
+                <View style={{ alignItems: "center" }}>
+                <TouchableOpacity style={styles.button} onPress={()=>{this.handleLogin()}}><Text style={styles.text}>Login</Text></TouchableOpacity>
+                </View>
+
             </View>
         )
     }
@@ -62,10 +65,15 @@ const styles = StyleSheet.create({
       borderWidth: 1,
     },
     button:{
-        padding:20,
+        backgroundColor: "blue",
+        width: 120,
+        height: 35,
+        alignItems: "center",
+        borderRadius: 20,
+        marginTop: 10,
     },
     text:{
         textAlign:'center',
-        borderWidth:5,
+        color: 'white',
     }
   });

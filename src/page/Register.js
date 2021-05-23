@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TextInput,StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { RegAction } from '../redux/Action'
+import { RegAction,LapAction } from '../redux/Action'
 import axios from 'axios'
 
 class Register extends Component {
@@ -10,6 +10,7 @@ class Register extends Component {
     constructor(props){
         super(props)
         this.state = {
+            // id:0,
             // name: "",
             // email: "",
             // phone: "",
@@ -19,7 +20,7 @@ class Register extends Component {
     }
 
     Register(){
-        axios.post("http://192.168.1.7:8080/Register/addReg/",this.props.dataRegis)
+        axios.post("http://192.168.1.7:8080/Register/addReg/",this.props.dataReg)
         .then((response)=>{
             alert(JSON.stringify(response.data));   
             this.props.navigation.navigate("login")
@@ -29,8 +30,7 @@ class Register extends Component {
     }
 
     // Register = () => {
-    //     axios
-    //       .post(`http://192.168.1.7:8080/Register/addReg`, this.state)
+    //     axios.post("http://192.168.1.7:8080/Register/addReg/", this.state)
     //       .then((response) => {
     //          console.log(response);
     //         alert(response.data);
@@ -45,6 +45,7 @@ class Register extends Component {
         return (
          
                 <View>          
+                            
                 <Text> Name </Text>
                 <TextInput
                     style={styles.input}
@@ -75,7 +76,7 @@ class Register extends Component {
                     style={styles.input}
                     placeholder="useless placeholder"
                     onChangeText={(value)=>{this.props.RegAction("password",value)}}
-                /> 
+                />
                           
                           <View style={{ alignItems: "center" }}>
                           <TouchableOpacity style={styles.button}onPress={() => this.Register()}>
@@ -88,16 +89,19 @@ class Register extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    dataRegis:state.RegisterReducer
+    dataReg:state.RegisterReducer,
+    dataLap:state.LapReducer,
+
 })
 
 const mapDispatchToProps = {
-    RegAction
+    RegAction,
+    LapAction,
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register)
 
-// export default Register;
 
 const styles = StyleSheet.create({
     input: {
@@ -115,6 +119,5 @@ const styles = StyleSheet.create({
     },
     text:{
         textAlign:'center',
-        borderWidth:5,
     }
   });
